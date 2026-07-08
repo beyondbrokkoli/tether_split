@@ -67,7 +67,7 @@ This tells the Linux kernel: *"Inject our compiled C script into this app the mo
 
 ```
 
-LD_PRELOAD=./vx_obs_tether.so obs
+LD_PRELOAD=./tether_split.so obs
 
 ```
 
@@ -75,7 +75,7 @@ LD_PRELOAD=./vx_obs_tether.so obs
 
 ```
 
-LD_PRELOAD=./vx_obs_tether.so discord
+LD_PRELOAD=./tether_split.so discord
 
 ```
 
