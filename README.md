@@ -1,5 +1,3 @@
-### ⚙️ Application-Level Split Tunneling for Linux
-
 ```c
 /* tether_split.c - Micro-interceptor for per-app network routing.
  * Forces SO_BINDTODEVICE on application sockets with 1MB WAN-jitter buffers.
@@ -45,7 +43,16 @@ int socket(int domain, int type, int protocol) {
 ```
 
 
-To make this work, we need to do two things: tell your Linux system to route all default traffic through your low-ping Ethernet cable, and compile our tiny C script to hijack specific apps (like OBS) so they use your tethered phone instead.
+### Why this exists
+
+Sometimes you want a specific application to use a specific network device, without changing the routing rules for the rest of your operating system. Instead of installing heavy networking daemons, container runtimes, or bloated user-space wrappers, this solves it with a few lines of clean C and zero dependencies.
+
+It is designed with a minimalist, suckless-adjacent philosophy: one tiny tool that does exactly one job at the socket layer.
+The Setup:
+
+The Problem: You have two internet connections. You want a high-stability fixed line (like Ethernet) to handle latency-sensitive traffic, but you want to offload a heavy data stream (like OBS Studio or massive uploads) to a secondary high-bandwidth line (like cellular data).
+
+The Solution: This micro-interceptor binds target applications strictly to your chosen interface, while leaving your system's default network routing entirely untouched.
 
 #### Step 1: Identify Your Networks
 
