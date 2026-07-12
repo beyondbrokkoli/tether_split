@@ -118,8 +118,8 @@ gcc -fPIC -shared -o tether_split.so tether_split.c -ldl
 
 To force an application to use your phone's internet, simply prepend the LD_PRELOAD environment variable to its launch command.
 
-⚠️ CRITICAL: You must use the absolute path to the compiled .so file. If you just use ./tether_split.so, it will often fail with a cannot open shared object file error because large applications (like Steam) change their working directory when they boot up.
-
+⚠️ CRITICAL: You must use the absolute path to the compiled .so file. If you just use ./tether_split.so, it will often fail with a cannot open shared object file error because some applications change their working directory when they boot up.
+# THIS DOESNT WORK WITH STEAM (only works for single binary applications that dont bypass our socket)
 The easiest way to do this is to use $PWD (which automatically prints your current directory) if you are still in the folder where you compiled the script:
 
 For OBS Studio:
