@@ -155,7 +155,7 @@ We are only including the foundational, built-in Linux headers.
 
 #### 2. The `LD_PRELOAD` Trick
 
-When you launch an app with `LD_PRELOAD=./vx_obs_tether.so`, you are telling the Linux operating system: *"Before you load the normal networking rules for this app, load my tiny script first."*
+When you launch an app with `LD_PRELOAD=./tether_split.so`, you are telling the Linux operating system: *"Before you load the normal networking rules for this app, load my tiny script first."*
 
 #### 3. Passing the Baton
 
