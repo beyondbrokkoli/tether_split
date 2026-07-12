@@ -116,25 +116,23 @@ gcc -fPIC -shared -o tether_split.so tether_split.c -ldl
 
 #### Step 4: Launch Your App (The Magic Trick)
 
-To force an application to use your phone's internet, simply prepend the `LD_PRELOAD` environment variable to its launch command.
+To force an application to use your phone's internet, simply prepend the LD_PRELOAD environment variable to its launch command.
 
-This tells the Linux kernel: *"Inject our compiled C script into this app the moment it boots."*
+⚠️ CRITICAL: You must use the absolute path to the compiled .so file. If you just use ./tether_split.so, it will often fail with a cannot open shared object file error because large applications (like OBS) change their working directory when they boot up.
 
-**For OBS Studio:**
+The easiest way to do this is to use $PWD (which automatically prints your current directory) if you are still in the folder where you compiled the script:
 
-```
+For OBS Studio:
+Bash
 
-LD_PRELOAD=./tether_split.so obs
+LD_PRELOAD=$PWD/tether_split.so obs
 
-```
+For Discord (or any other app):
+Bash
 
-**For Discord (or any other app):**
+LD_PRELOAD=$PWD/tether_split.so discord
 
-```
-
-LD_PRELOAD=./tether_split.so discord
-
-```
+(Alternatively, you can just type out the full path manually, for example: LD_PRELOAD=/home/youruser/tether-split/tether_split.so obs)
 
 Here is exactly what the code is doing, line by line:
 
